@@ -1,6 +1,16 @@
 #include <WiFi.h>
 #include <WebServer.h>
 WebServer server(80);
+void redON()
+{
+  digitalWrite(23,1);
+  server.send(200, "text/html","<center><h1>red OFF</h1><br><a href=\"/\">home</a></html>");
+}
+void redOFF()
+{
+  digitalWrite(23,0);
+  server.send(200, "text/html","<center><h1>red OFF</h1><br><a href=\"/\">home</a></html>");
+}
 void greenON()
 {
   digitalWrite(19,1);
@@ -59,12 +69,8 @@ WiFi.softAP("esp32-24", "12345678");
 Serial.println();
 Serial.print("Connected, IP address: ");
 Serial.println(WiFi.localIP());
-server.on("/red/on", []() {
-digitalWrite(23,1);
-server.send(200, "text/html","<center><h1>red OFF</h1><br><a href=\"/\">home</a></html>");});
-server.on("/red/off", []() {
-digitalWrite(23,0);
-server.send(200, "text/html","<center><h1>red OFF</h1><br><a href=\"/\">home</a></html>");});
+server.on("/red/on", redON);
+server.on("/red/off", redOFF);
 server.on("/green/on", greenON);
 server.on("/green/off", greenOFF);
 server.on("/blue/on", blueON);
