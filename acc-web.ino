@@ -4,12 +4,12 @@ WebServer server(80);
 void redON()
 {
   digitalWrite(23,1);
-  server.send(200, "text/html","<center><h1>red OFF</h1><br><a href=\"/\">home</a></html>");
+  server.send(200, "text/html","<center><h1>red OFF</h1><br><a href=\"/\">Back to homepage</a></html>");
 }
 void redOFF()
 {
   digitalWrite(23,0);
-  server.send(200, "text/html","<center><h1>red OFF</h1><br><a href=\"/\">home</a></html>");
+  server.send(200, "text/html","<center><h1>red OFF</h1><br><a href=\"/\">Back to homepage</a></html>");
 }
 void greenON()
 {
